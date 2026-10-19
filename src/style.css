@@ -1,0 +1,583 @@
+/* ==========================================================================
+   CYPHEROX DESIGN SYSTEM (Directly from https://cx-uk.netlify.app/)
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  --primary: #f26e65;
+  --primary-dark: #d94f47;
+  --primary-light: #f5918a;
+  --primary-lighter: #fbd5d3;
+  --accent: #1a1a1a;
+  --accent-dark: #000000;
+  --accent-light: #333333;
+  --bg-white: #FAF9F6;
+  --bg-light: #F5F3EF;
+  --bg-dark: #1a1a1a;
+  --bg-darker: #111111;
+  --bg-surface: #EFEDE8;
+  --surface-dark: #1a1a1a;
+  --text-primary: #1a1a1a;
+  --text-secondary: #555555;
+  --text-muted: #888888;
+  --text-white: #FAF9F6;
+  --border: #E5E1DA;
+  --border-light: #F0EDE7;
+  --border-dark: #333333;
+  --success: #10B981;
+  --error: #EF4444;
+  --warning: #F59E0B;
+
+  --header-height: 80px;
+  --font-body: 'Poppins', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Poppins', system-ui, -apple-system, sans-serif;
+}
+
+/* Base resets & typography */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-light);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Eliminating unwanted browser focus outline rings */
+*:focus {
+  outline: none !important;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--primary) !important;
+  outline-offset: 2px;
+}
+
+canvas {
+  outline: none !important;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Kinetic Moving Outline on UI Elements */
+#controls-pill.moving-active {
+  border-color: #f26e65 !important;
+  box-shadow: 0 0 24px rgba(242, 110, 101, 0.6), inset 0 0 12px rgba(242, 110, 101, 0.15), 0 8px 32px rgba(0, 0, 0, 0.75) !important;
+  transform: translateY(-2px);
+}
+
+#campus-radar-container.moving-active {
+  border-color: #f26e65 !important;
+  box-shadow: 0 0 22px rgba(242, 110, 101, 0.5), 0 8px 30px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #111111;
+}
+::-webkit-scrollbar-thumb {
+  background: #333333;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* ==========================================================================
+   AUTHENTIC CYPHEROX HEADER (cx-uk.netlify.app)
+   ========================================================================== */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  background-color: rgba(26, 26, 26, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.header__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 100%;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.header__logo img {
+  width: 228px;
+  height: 20px;
+  max-height: 20px;
+  object-fit: contain;
+  filter: invert(1) brightness(2);
+  display: block;
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 100%;
+  margin: 0 auto 0 28px;
+}
+
+.nav-item {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+}
+
+.nav-item__link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff !important;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-family: var(--font-body);
+}
+
+.nav-item:hover .nav-item__link,
+.nav-item__link:hover {
+  color: var(--primary) !important;
+}
+
+.nav-item__link .chevron {
+  transition: transform 0.25s ease;
+  opacity: 0.7;
+}
+
+.nav-item:hover .nav-item__link .chevron {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* Header Action Buttons */
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.btn--pill-outline {
+  padding: 9px 20px;
+  border-radius: 99px !important;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--text-white);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--font-body);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+  text-decoration: none;
+}
+
+.btn--pill-outline:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #fff;
+}
+
+.btn--pill-primary {
+  padding: 9px 22px;
+  border-radius: 99px !important;
+  background-color: var(--primary);
+  color: var(--text-white);
+  border: 1px solid var(--primary);
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--font-body);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(242, 110, 101, 0.35);
+  text-decoration: none;
+}
+
+.btn--pill-primary:hover {
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(242, 110, 101, 0.5);
+  color: #fff;
+}
+
+/* ==========================================================================
+   LEFT-SIDE HALF-SCREEN SCROLLABLE PAGE EXPERIENCE
+   ========================================================================== */
+#station-terminal-container {
+  position: fixed;
+  top: var(--header-height, 80px);
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 580px;
+  z-index: 800;
+  display: flex;
+  flex-direction: column;
+  background: rgba(18, 18, 18, 0.98);
+  backdrop-filter: blur(24px);
+  border-right: 1px solid #2d2d2d;
+  box-shadow: 12px 0 45px rgba(0, 0, 0, 0.7);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+@media (min-width: 1024px) {
+  #station-terminal-container {
+    width: 48%;
+    max-width: 680px;
+  }
+}
+
+@media (min-width: 1440px) {
+  #station-terminal-container {
+    width: 44%;
+    max-width: 740px;
+  }
+}
+
+#station-terminal-container.panel-collapsed {
+  transform: translateX(-100%);
+  pointer-events: none;
+}
+
+/* Custom Sleek Scrollbar for Left Page */
+.custom-page-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #3a3a3a transparent;
+}
+
+.custom-page-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-page-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-page-scrollbar::-webkit-scrollbar-thumb {
+  background: #333333;
+  border-radius: 99px;
+}
+
+.custom-page-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* Left Page Tab Buttons */
+.station-tab-btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: 1px solid #333333;
+  background: #181818;
+  color: #CBD5E1;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.station-tab-btn:hover {
+  border-color: var(--primary);
+  color: #FFFFFF;
+  background: #222222;
+}
+
+.station-tab-btn.active-tab {
+  background: var(--primary) !important;
+  color: #FFFFFF !important;
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 14px rgba(242, 110, 101, 0.45);
+}
+
+
+
+/* Astray-Style Keyboard HUD Keycaps */
+.hud-key {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #222222;
+  border: 1px solid #3a3a3a;
+  border-bottom: 2px solid var(--primary);
+  border-radius: 5px;
+  color: #FAF9F6;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  transition: all 0.1s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hud-key.active-key {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+  transform: translateY(2px);
+  box-shadow: 0 0 12px rgba(242, 110, 101, 0.7);
+}
+
+.hud-key-mini {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  background: #242424;
+  border: 1px solid #3a3a3a;
+  border-bottom: 2px solid var(--primary);
+  border-radius: 4px;
+  color: #FAF9F6;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  transition: all 0.1s ease;
+}
+
+.hud-key-mini.active-key {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+  box-shadow: 0 0 10px rgba(242, 110, 101, 0.7);
+  transform: translateY(1px);
+}
+
+/* CRO Toaster Notifications */
+.cro-toast {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: rgba(26, 26, 26, 0.95);
+  border: 1px solid rgba(242, 110, 101, 0.35);
+  backdrop-filter: blur(12px);
+  border-radius: 12px;
+  padding: 12px 14px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(242, 110, 101, 0.15);
+  transition: all 0.35s ease;
+}
+
+.cro-toast.animate-slide-in {
+  animation: toastSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes toastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.toast-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 8px var(--primary);
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+.toast-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.toast-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+
+.toast-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: rgba(242, 110, 101, 0.2);
+  color: #f5918a;
+  border: 1px solid rgba(242, 110, 101, 0.4);
+}
+
+.toast-time {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: #CBD5E1 !important;
+  font-weight: 600;
+}
+
+.toast-text {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  color: #FFFFFF !important;
+  line-height: 1.45;
+  margin: 0;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+/* ==========================================================================
+   COMMON CYPHEROX UTILITY CLASSES (cx-uk.netlify.app)
+   ========================================================================== */
+.text-gradient {
+  background: linear-gradient(135deg, #f26e65 0%, #d94f47 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+.eyebrow {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--primary);
+  display: block;
+}
+
+.btn--primary {
+  background-color: var(--primary);
+  color: var(--text-white);
+  padding: 12px 28px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.btn--primary:hover {
+  background-color: var(--primary-dark);
+}
+
+.btn--secondary {
+  background-color: transparent;
+  border-color: var(--primary);
+  color: var(--primary);
+  padding: 12px 28px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid var(--primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.btn--secondary:hover {
+  background-color: var(--primary);
+  color: var(--text-white);
+}
+
+/* Authentic Form Input Styles */
+.form-input {
+  width: 100%;
+  padding: 10px 0;
+  border: none;
+  border-bottom: 1px solid #475569;
+  border-radius: 0;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  background-color: transparent;
+  color: #fff;
+  outline: none;
+  font-family: var(--font-body);
+}
+
+.form-input:focus {
+  border-bottom-color: var(--primary);
+}
+
+.form-select {
+  appearance: none;
+  background-color: #1a1a1a;
+  color: #fff;
+  padding: 10px;
+  border: 1px solid #475569;
+  border-radius: 8px;
+}
+
+.form-select:focus {
+  border-color: var(--primary);
+}
+
+/* High-Converting Form Modal Popout Styling */
+#booking-modal {
+  z-index: 9999 !important;
+}
+
+#booking-modal:not(.hidden) > div {
+  animation: modalPopout 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.95), 0 0 35px rgba(242, 110, 101, 0.35);
+  border: 1px solid rgba(242, 110, 101, 0.3);
+}
+
+@keyframes modalPopout {
+  0% {
+    opacity: 0;
+    transform: scale(0.93) translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
